@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { motion } from 'framer-motion'
+import { motion } from '../../utils/motion'
 import { formatCurrency } from '../../utils/formatCurrency'
 import styles from './SummaryCard.module.css'
 

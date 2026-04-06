@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { motion } from '../../utils/motion'
 import { useUIStore } from '../../store/useUIStore'
 import { useAuthStore } from '../../store/useAuthStore'
 import { Avatar } from '../shared/Avatar'

@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { motion } from '../../utils/motion'
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts'
 import { TrendData } from '../../types/dashboard.types'
 import styles from './BalanceTrendChart.module.css'
