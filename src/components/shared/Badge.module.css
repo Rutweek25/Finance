@@ -1,0 +1,50 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-xs) var(--spacing-md);
+  border-radius: var(--radius-lg);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.default {
+  background-color: rgba(26, 86, 219, 0.1);
+  color: var(--zorvyan-blue);
+}
+
+.success {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: var(--zorvyan-green);
+}
+
+.warning {
+  background-color: rgba(245, 158, 11, 0.1);
+  color: var(--zorvyan-gold);
+}
+
+.danger {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: var(--zorvyan-red);
+}
+
+.info {
+  background-color: rgba(14, 165, 233, 0.1);
+  color: var(--zorvyan-teal);
+}
+
+.size-sm {
+  font-size: 0.75rem;
+  padding: 2px 8px;
+}
+
+.size-md {
+  font-size: 0.875rem;
+  padding: 4px 12px;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

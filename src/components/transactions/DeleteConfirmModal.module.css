@@ -1,0 +1,22 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.content p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+}
+
+.warning {
+  color: var(--zorvyan-red);
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.actions {
+  display: flex;
+  gap: var(--spacing-md);
+}

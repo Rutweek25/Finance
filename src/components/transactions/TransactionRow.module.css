@@ -1,0 +1,41 @@
+.date {
+  font-weight: 600;
+  color: var(--zorvyan-blue);
+}
+
+.description {
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.category {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.amount {
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.amount.income {
+  color: var(--zorvyan-green);
+}
+
+.amount.expense {
+  color: var(--zorvyan-red);
+}
+
+.actions {
+  display: flex;
+  gap: var(--spacing-sm);
+  justify-content: flex-end;
+}
+
+@media (max-width: 768px) {
+  .description {
+    max-width: 100px;
+  }
+}
