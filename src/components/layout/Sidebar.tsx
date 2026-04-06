@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import { motion } from '../../utils/motion'
+import { motion } from 'framer-motion'
 import { useUIStore } from '../../store/useUIStore'
 import styles from './Sidebar.module.css'
 import { ROUTES } from '../../constants/routes'

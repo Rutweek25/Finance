@@ -1,4 +1,4 @@
-import { motion } from '../../utils/motion'
+import { motion } from 'framer-motion'
 import { Transaction } from '../../types/transaction.types'
 import { CATEGORY_ICONS } from '../../constants/categories'
 import { formatCurrency } from '../../utils/formatCurrency'

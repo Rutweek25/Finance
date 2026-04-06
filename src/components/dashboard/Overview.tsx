@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { motion } from '../../utils/motion'
+import { motion } from 'framer-motion'
 import { useTransactionStore } from '../../store/useTransactionStore'
 import { useDashboardMetrics } from '../../hooks/useDashboardMetrics'
 import { mockTransactions } from '../../data/mockTransactions'

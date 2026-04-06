@@ -1,4 +1,4 @@
-import { motion } from '../../utils/motion'
+import { motion } from 'framer-motion'
 import { PieChart, Pie, Cell, Legend, Tooltip, ResponsiveContainer } from 'recharts'
 import { CategoryBreakdown } from '../../types/dashboard.types'
 import styles from './SpendingBreakdownChart.module.css'

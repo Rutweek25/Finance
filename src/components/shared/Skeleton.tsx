@@ -1,4 +1,4 @@
-import { motion } from '../../utils/motion'
+import { motion } from 'framer-motion'
 import styles from './Skeleton.module.css'
 
 interface SkeletonProps {
