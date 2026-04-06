@@ -3,11 +3,15 @@ import { DashboardMetrics, TrendData, CategoryBreakdown } from '../types/dashboa
 import { parse, subMonths, format, startOfMonth, endOfMonth, isWithinInterval } from 'date-fns'
 
 export const deriveDashboardMetrics = (transactions: Transaction[]): DashboardMetrics => {
-  const now = new Date()
-  const currentMonth = startOfMonth(now)
-  const currentMonthEnd = endOfMonth(now)
-  const previousMonthStart = startOfMonth(subMonths(now, 1))
-  const previousMonthEnd = endOfMonth(subMonths(now, 1))
+  const referenceDate = transactions.reduce((latestDate, transaction) => {
+    const transactionDate = parse(transaction.date, 'yyyy-MM-dd', new Date())
+    return transactionDate > latestDate ? transactionDate : latestDate
+  }, transactions.length > 0 ? parse(transactions[0].date, 'yyyy-MM-dd', new Date()) : new Date())
+
+  const currentMonth = startOfMonth(referenceDate)
+  const currentMonthEnd = endOfMonth(referenceDate)
+  const previousMonthStart = startOfMonth(subMonths(referenceDate, 1))
+  const previousMonthEnd = endOfMonth(subMonths(referenceDate, 1))
 
   const currentMonthTransactions = transactions.filter((tx) => {
     const txDate = parse(tx.date, 'yyyy-MM-dd', new Date())
@@ -61,13 +65,16 @@ export const deriveDashboardMetrics = (transactions: Transaction[]): DashboardMe
 
 export const deriveTrendData = (transactions: Transaction[]): TrendData[] => {
   const trendMap = new Map<string, { income: number; expense: number }>()
-  const sixMonthsAgo = subMonths(new Date(), 6)
+  const referenceDate = transactions.reduce((latestDate, transaction) => {
+    const transactionDate = parse(transaction.date, 'yyyy-MM-dd', new Date())
+    return transactionDate > latestDate ? transactionDate : latestDate
+  }, transactions.length > 0 ? parse(transactions[0].date, 'yyyy-MM-dd', new Date()) : new Date())
+
+  const months = Array.from({ length: 6 }, (_, index) =>
+    format(subMonths(referenceDate, 5 - index), 'yyyy-MM'),
+  )
 
   transactions
-    .filter((tx) => {
-      const txDate = parse(tx.date, 'yyyy-MM-dd', new Date())
-      return txDate >= sixMonthsAgo
-    })
     .forEach((tx) => {
       const monthKey = format(parse(tx.date, 'yyyy-MM-dd', new Date()), 'yyyy-MM')
       const existing = trendMap.get(monthKey) || { income: 0, expense: 0 }
@@ -81,13 +88,9 @@ export const deriveTrendData = (transactions: Transaction[]): TrendData[] => {
       trendMap.set(monthKey, existing)
     })
 
-  const sortedDates = Array.from(trendMap.keys())
-    .sort()
-    .slice(-6)
-
   let runningBalance = 0
-  return sortedDates.map((date) => {
-    const data = trendMap.get(date)!
+  return months.map((date) => {
+    const data = trendMap.get(date) || { income: 0, expense: 0 }
     runningBalance += data.income - data.expense
     return {
       date: format(parse(date, 'yyyy-MM', new Date()), 'MMM'),

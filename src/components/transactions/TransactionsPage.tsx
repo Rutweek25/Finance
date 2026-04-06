@@ -44,22 +44,26 @@ export const TransactionsPage = () => {
           <h1 className={styles.title}>Transactions</h1>
           <p className={styles.subtitle}>Manage and analyze your financial transactions</p>
         </div>
+      </header>
+
+      <div className={styles.toolbar}>
+        <div className={styles.toolbarLabel}>Quick Actions</div>
         <div className={styles.actions}>
           <PermissionGate permission="canAdd">
-            <Button icon="+" onClick={() => setIsAddOpen(true)} size="lg">
+            <Button icon="＋" onClick={() => setIsAddOpen(true)} size="lg">
               Add Transaction
             </Button>
           </PermissionGate>
           <PermissionGate permission="canExport">
-            <Button variant="secondary" onClick={() => exportAsCSV(filtered)}>
+            <Button variant="secondary" icon="⬇️" onClick={() => exportAsCSV(filtered)}>
               Export CSV
             </Button>
-            <Button variant="secondary" onClick={() => exportAsJSON(filtered)}>
+            <Button variant="secondary" icon="🧾" onClick={() => exportAsJSON(filtered)}>
               Export JSON
             </Button>
           </PermissionGate>
         </div>
-      </header>
+      </div>
 
       <TransactionFilters filter={filter} onChange={setFilter} />
 
